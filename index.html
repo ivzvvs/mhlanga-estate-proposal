@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mhlanga Estate · Partnership proposal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700&family=Inter+Tight:wght@300;400;500;600&display=swap">
+<style>
+:root{
+  --ink:#141414;--ink2:#2a2a2a;--muted:#6e6e6a;--gray:#a3a3a0;--line:#e4e4e0;--line2:#d6d6d1;
+  --soft:#f5f5f3;--page:#ebebe9;--paper:#fff;
+  --n0:#0e0e0d;--n1:#141414;--n2:#1d1d1c;--n3:#262624;--nline:#2e2e2c;--nink:#f2f2ef;--nmuted:#9a9a94;
+  --ok:#1f8a4c;--okS:#e5f4ea;--run:#e8833a;--runS:#fbeadb;--runT:#b45f1c;--err:#c0392b;--errS:#fbe7e4;
+  --haloA:#f3e2d4;--haloB:#e3e1f3;--haloAn:#3a2f2a;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--page)}
+body{font-family:'Inter Tight','Helvetica Neue',Arial,sans-serif;color:var(--ink);-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;print-color-adjust:exact;-webkit-print-color-adjust:exact}
+h1,h2,h3,p{margin:0}
+button{font-family:inherit;cursor:pointer}
+.deck{height:100svh;overflow-y:auto;scroll-snap-type:y mandatory;-webkit-overflow-scrolling:touch}
+.slide{min-height:100svh;scroll-snap-align:start;display:flex;justify-content:center;position:relative}
+.in{width:100%;max-width:480px;padding:44px 22px 56px;display:flex;flex-direction:column;gap:18px;position:relative}
+.eyebrow{font-size:11.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.h1{font-size:42px;font-weight:300;line-height:1.02;letter-spacing:-.045em}
+.h2{font-size:31px;font-weight:300;line-height:1.08;letter-spacing:-.04em}
+.lede{font-size:17px;font-weight:300;line-height:1.5;color:var(--ink2)}
+.small{font-size:13px;line-height:1.45;color:var(--muted)}
+.num{position:absolute;left:22px;bottom:20px;font-size:12px;color:var(--muted)}
+.card{background:var(--paper);box-shadow:0 0 0 1px var(--line);border-radius:18px;padding:14px 16px}
+.pill{display:inline-block;font-size:11.5px;font-weight:500;padding:3px 10px;border-radius:999px;white-space:nowrap}
+.p-ok{color:var(--ok);background:var(--okS)}.p-run{color:var(--runT);background:var(--runS)}.p-err{color:var(--err);background:var(--errS)}.p-mute{color:var(--ink);background:var(--line)}
+.spacer{flex:1}
+.wm{font-family:'Archivo','Helvetica Neue',Arial,sans-serif;font-weight:700;letter-spacing:-.02em;text-transform:uppercase;color:var(--ink)}
+.dark .wm{color:var(--nink)}
+.brand{position:absolute;right:22px;bottom:20px;font-size:11px}
+.halo{background:radial-gradient(70% 55% at 10% 0%,var(--haloA),transparent),radial-gradient(70% 50% at 100% 100%,var(--haloB),transparent),var(--soft)}
+.dark{background:radial-gradient(80% 60% at 100% 100%,var(--haloAn),transparent),var(--n1);color:var(--nink)}
+.dark .eyebrow,.dark .small,.dark .num{color:var(--nmuted)}
+.hint{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.units .card{display:flex;flex-direction:column;gap:4px}
+.unit-name{font-size:19px;font-weight:400;letter-spacing:-.025em}
+.svc{display:flex;flex-direction:column;gap:3px}
+.svc b{font-size:15px;font-weight:500}
+.svc span{font-size:13px;line-height:1.4;color:var(--ink2)}
+.svc i{font-style:normal;font-size:12.5px;color:var(--muted)}
+.role{display:flex;flex-direction:column;gap:3px;padding:14px 0;border-top:1px solid var(--line2)}
+.role:last-child{border-bottom:1px solid var(--line2)}
+.role b{font-size:15px;font-weight:500}.role span{font-size:15px;font-weight:300;line-height:1.45;color:var(--ink2)}
+/* timeline */
+.tl{display:flex;flex-direction:column}
+.ph{display:flex;gap:14px}
+.ph .rail{display:flex;flex-direction:column;align-items:center;width:14px;flex:none}
+.ph .dot{width:14px;height:14px;border-radius:50%;border:1.5px solid var(--ink);background:var(--paper);margin-top:16px}
+.ph.on .dot{background:var(--ink)}
+.ph .bar{flex:1;width:1.5px;background:var(--line2)}
+.ph:last-child .bar{background:transparent}
+.ph .body{flex:1;padding:10px 0 6px}
+.ph .card{display:flex;flex-direction:column;gap:3px}
+.ph.on .card{background:var(--ink);color:var(--nink);box-shadow:none}
+.ph.on .card .small{color:var(--nmuted)}
+.ph .t{font-size:18px;font-weight:400;letter-spacing:-.025em}
+.gate{font-size:11.5px;color:var(--muted);padding:6px 0 0 2px}
+/* dashboard */
+.app{background:var(--page);border-radius:24px;box-shadow:0 0 0 1px var(--line2);overflow:hidden;display:flex;flex-direction:column}
+.app-h{padding:16px 14px 12px;display:flex;flex-direction:column;gap:12px}
+.tabs{display:flex;gap:4px;background:var(--paper);box-shadow:0 0 0 1px var(--line);border-radius:999px;padding:3px}
+.tabs button{flex:1;min-height:36px;border:none;border-radius:999px;font-size:13.5px;font-weight:500;background:transparent;color:var(--muted)}
+.tabs button[aria-selected="true"]{background:var(--ink);color:#fff}
+.app-b{padding:4px 12px 14px;display:flex;flex-direction:column;gap:8px}
+.big{font-size:36px;font-weight:300;letter-spacing:-.05em;line-height:1}
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.tile{background:var(--paper);box-shadow:0 0 0 1px var(--line);border-radius:14px;padding:9px 10px;display:flex;flex-direction:column;gap:2px}
+.tile .k{font-size:11px;color:var(--muted)}.tile .v{font-size:20px;font-weight:300;letter-spacing:-.04em}
+.rev{display:flex;flex-direction:column;gap:5px;width:100%;background:none;border:none;padding:4px 0;text-align:left;color:var(--ink)}
+.rev .row{font-size:13px}
+.track{height:5px;border-radius:999px;background:var(--soft);width:100%}
+.track div{height:5px;border-radius:999px;background:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips button{min-height:36px;padding:0 14px;border-radius:999px;font-size:13px;font-weight:500;border:none;background:var(--paper);box-shadow:0 0 0 1px var(--line);color:var(--ink)}
+.chips button[aria-pressed="true"]{background:var(--ink);color:#fff;box-shadow:none}
+.kpi{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:9px}
+.kpi .l{font-size:13px}.kpi .tg{font-size:11.5px;color:var(--muted)}.kpi .v{font-size:17px;font-weight:300;letter-spacing:-.04em;text-align:right}
+.alert{display:flex;flex-direction:column;gap:4px}
+.alert.urgent{box-shadow:0 0 0 1px var(--err)}
+[hidden]{display:none!important}
+.print-only{display:none}
+@media (min-width:700px){.in{padding-top:64px}}
+@page{size:390px 693px;margin:0}
+@media print{
+  html,body{background:var(--page)}
+  .deck{height:auto;overflow:visible}
+  .slide{height:693px;min-height:0;overflow:hidden;break-after:page;page-break-after:always}
+  .in{padding:36px 22px 44px;max-width:none}
+  .screen-only{display:none!important}
+  .svc{padding:10px 14px}
+  .ph .card{padding:10px 14px}
+  .ph .body{padding:6px 0 2px}
+  .ph .dot{margin-top:12px}
+  .gate{padding-top:4px}
+  .tl-note{display:none}
+  .print-only{display:block}
+}
+</style>
+</head>
+<body>
+<main class="deck">
+
+<!-- 1 Cover -->
+<section class="slide halo">
+<div class="in">
+<p class="eyebrow">Partnership proposal · Mhlanga Estate</p>
+<div class="spacer"></div>
+<h1 class="h1">One estate.<br>One brand.<br>One view of the business.</h1>
+<p class="lede">Branding, marketing, automation and an operations command centre for the farm, hotel, restaurant, conference centre and golf club.</p>
+<div class="spacer"></div>
+<p class="wm" style="font-size:15px">WWWAVE STUDIO</p>
+<p class="hint screen-only">Scroll down to continue
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></p>
+</div>
+</section>
+
+<!-- 2 Why now -->
+<section class="slide" style="background:var(--soft)">
+<div class="in units">
+<p class="eyebrow">Why now</p>
+<h2 class="h2">Pre-launch is the cheapest moment to get it right</h2>
+<div style="display:flex;flex-direction:column;gap:8px">
+<div class="card"><div class="row"><span class="unit-name">Farm</span><span class="pill p-ok">Operating</span></div><span class="small">Feeds the kitchen and the story.</span></div>
+<div class="card"><div class="row"><span class="unit-name">Hotel</span><span class="pill p-run">Private hires</span></div><span class="small">46 rooms, not yet open to the public.</span></div>
+<div class="card"><div class="row"><span class="unit-name">Restaurant</span><span class="pill p-run">Private hires</span></div><span class="small">Serving hires and conference guests.</span></div>
+<div class="card"><div class="row"><span class="unit-name">Conference centre</span><span class="pill p-ok">Operating</span></div><span class="small">Main revenue today, mostly by referral.</span></div>
+<div class="card" style="background:radial-gradient(90% 120% at 0% 0%,var(--haloA),transparent 70%),var(--paper)"><div class="row"><span class="unit-name">Golf club</span><span class="pill p-mute">In build</span></div><span class="small">Can sell memberships before it opens.</span></div>
+</div>
+<p class="lede" style="font-size:15px">No legacy brand to unwind, no old systems to migrate, and a manager about to be appointed. What we set up now becomes how the estate runs.</p>
+<span class="num">02 / 07</span><span class="brand wm">WWWAVE STUDIO</span>
+</div>
+</section>
+
+<!-- 3 Services -->
+<section class="slide" style="background:var(--paper)">
+<div class="in">
+<p class="eyebrow">What we do</p>
+<h2 class="h2">Five services, one partner</h2>
+<div style="display:flex;flex-direction:column;gap:8px">
+<div class="card svc" style="background:var(--soft);box-shadow:none"><b>1 · Brand</b><span>Positioning, brand architecture, identity, brand book, photo and drone shoot</span><i>One recognisable destination</i></div>
+<div class="card svc" style="background:var(--soft);box-shadow:none"><b>2 · Digital presence</b><span>Website with direct booking, Google, Booking.com, TripAdvisor, WhatsApp Business</span><i>Guests find, trust and book directly</i></div>
+<div class="card svc" style="background:var(--soft);box-shadow:none"><b>3 · Marketing and sales</b><span>Launch campaign, corporate sales kit, social, golf founding memberships</span><i>Demand you control, not only referrals</i></div>
+<div class="card svc" style="background:var(--soft);box-shadow:none"><b>4 · Automation</b><span>Enquiry to quote to invoice, guest messaging, review requests, staff checklists</span><i>Faster replies, fewer lost leads</i></div>
+<div class="card svc" style="background:var(--ink);color:var(--nink);box-shadow:none"><b>5 · Command Centre</b><span style="color:#c9c9c4">One dashboard across all five units, alerts, weekly owner report</span><i style="color:var(--nmuted)">The whole estate in your pocket</i></div>
+</div>
+<span class="num">03 / 07</span><span class="brand wm">WWWAVE STUDIO</span>
+</div>
+</section>
+
+<!-- 4 Command Centre -->
+<section class="slide halo">
+<div class="in">
+<p class="eyebrow">Estate Command Centre</p>
+<h2 class="h2">Your whole estate on one screen, every morning</h2>
+<div>
+<div class="role"><b>Owner</b><span>Yesterday’s results, cash position and alerts on your phone by 07:00.</span></div>
+<div class="role"><b>General manager</b><span>Targets against actuals for every unit, tasks and approvals.</span></div>
+<div class="role"><b>Heads of department</b><span>Only their unit, filled in from a phone, even offline.</span></div>
+</div>
+<p class="small">Alerts go to WhatsApp when something drifts off target: an unanswered enquiry, low stock, a cash variance.</p>
+<p class="hint">Mock-up on the next page<span class="screen-only">, tap through it</span></p>
+<span class="num">04 / 07</span><span class="brand wm">WWWAVE STUDIO</span>
+</div>
+</section>
+
+<!-- 5 Dashboard mock -->
+<section class="slide" style="background:var(--soft)">
+<div class="in" style="gap:12px">
+<div class="row"><p class="eyebrow">Owner view · mock-up</p><p class="small" style="font-size:11.5px">Illustrative data</p></div>
+<div class="app">
+<div class="app-h halo">
+<div class="row" style="align-items:flex-start">
+<div>
+<p class="eyebrow" style="font-size:10.5px">Mhlanga Estate</p>
+<p style="font-size:24px;font-weight:300;letter-spacing:-.035em;line-height:1.15">Good morning, Lionel</p>
+<p class="small" style="font-size:12px">Results for Friday</p>
+</div>
+<span class="pill" style="background:var(--run);color:#fff">3 alerts</span>
+</div>
+<div class="tabs screen-only" role="tablist">
+<button role="tab" aria-selected="true" data-tab="today">Today</button>
+<button role="tab" aria-selected="false" data-tab="units">Units</button>
+<button role="tab" aria-selected="false" data-tab="alerts">Alerts</button>
+</div>
+</div>
+<div class="app-b">
+
+<div data-view="today">
+<div style="display:flex;flex-direction:column;gap:8px">
+<div class="card" style="padding:12px 14px;display:flex;flex-direction:column;gap:5px">
+<span class="small" style="font-size:12px">Revenue, all units</span>
+<span class="big">USD 16,840</span>
+<div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap"><span class="pill p-ok">+12% vs last Fri</span><span class="small" style="font-size:11.5px">112% of USD 15,000 target</span></div>
+</div>
+<div class="tiles">
+<div class="tile"><span class="k">Occupancy</span><span class="v">72%</span><span class="k">33 of 46</span></div>
+<div class="tile"><span class="k">ADR</span><span class="v">$236</span><span class="k">RevPAR $170</span></div>
+<div class="tile"><span class="k">Cash</span><span class="v">$82.4k</span><span class="k">bank + tills</span></div>
+</div>
+<div class="card" style="padding:10px 14px;display:flex;flex-direction:column;gap:2px">
+<span style="font-size:13px;font-weight:500;padding-bottom:2px">Revenue by unit</span>
+<button class="rev" data-open="hotel"><div class="row"><span>Hotel</span><b style="font-weight:500">USD 7,780</b></div><div class="track"><div style="width:100%"></div></div></button>
+<button class="rev" data-open="conference"><div class="row"><span>Conference</span><b style="font-weight:500">USD 5,200</b></div><div class="track"><div style="width:67%"></div></div></button>
+<button class="rev" data-open="restaurant"><div class="row"><span>Restaurant</span><b style="font-weight:500">USD 2,960</b></div><div class="track"><div style="width:38%"></div></div></button>
+<button class="rev" data-open="farm"><div class="row"><span>Farm (outside sales)</span><b style="font-weight:500">USD 900</b></div><div class="track"><div style="width:12%"></div></div></button>
+<button class="rev" data-open="golf"><div class="row"><span>Golf club</span><b style="font-weight:500">Pre-opening</b></div><div class="track"></div></button>
+</div>
+<button class="card alert" data-goto="alerts" style="background:var(--runS);box-shadow:none;text-align:left;border:none;color:var(--ink);padding:10px 14px">
+<span class="eyebrow" style="color:var(--runT);font-size:10.5px">Needs attention · 3</span>
+<span style="font-size:13px;line-height:1.4">2 conference enquiries unanswered for over 2 hours</span>
+</button>
+</div>
+</div>
+
+<div data-view="units" hidden>
+<div style="display:flex;flex-direction:column;gap:8px">
+<div class="chips" id="chips"></div>
+<div class="card" style="display:flex;flex-direction:column;gap:9px">
+<div class="row" style="align-items:baseline"><span id="u-name" style="font-size:22px;font-weight:300;letter-spacing:-.035em"></span><span id="u-lead" class="small" style="font-size:11.5px"></span></div>
+<div id="u-kpis" style="display:flex;flex-direction:column;gap:9px"></div>
+</div>
+</div>
+</div>
+
+<div data-view="alerts" hidden>
+<div style="display:flex;flex-direction:column;gap:8px">
+<div class="card alert urgent"><div class="row"><span class="pill p-err">Urgent</span><span class="small" style="font-size:11.5px">09:40</span></div><b style="font-size:14px;font-weight:500">2 conference enquiries waiting</b><span class="small" style="color:var(--ink2)">Unanswered for over 2 hours. Combined value about USD 18,000.</span><span class="small" style="font-size:11.5px">Assigned to: Events manager</span></div>
+<div class="card alert"><div class="row"><span class="pill p-run">Watch</span><span class="small" style="font-size:11.5px">07:00</span></div><b style="font-size:14px;font-weight:500">Feed stock below 7 days</b><span class="small" style="color:var(--ink2)">Reorder now to avoid a gap next weekend.</span><span class="small" style="font-size:11.5px">Assigned to: Farm manager</span></div>
+<div class="card alert"><div class="row"><span class="pill p-run">Watch</span><span class="small" style="font-size:11.5px">Yesterday</span></div><b style="font-size:14px;font-weight:500">Direct bookings at 41%</b><span class="small" style="color:var(--ink2)">Below the 50% target for the third week. OTA commission rising.</span><span class="small" style="font-size:11.5px">Assigned to: General manager</span></div>
+</div>
+</div>
+
+</div>
+</div>
+<span class="num">05 / 07</span><span class="brand wm">WWWAVE STUDIO</span>
+</div>
+</section>
+
+<!-- 6 Roadmap -->
+<section class="slide" style="background:var(--paper)">
+<div class="in" style="gap:14px">
+<p class="eyebrow">How it unfolds</p>
+<h2 class="h2">Four phases, each approved on its own</h2>
+<div class="tl">
+<div class="ph on"><div class="rail"><div class="dot"></div><div class="bar"></div></div><div class="body"><div class="card"><span class="small">Phase 0 · weeks 1–4</span><span class="t">Discovery</span><span class="small">Brand workshop, site visit, systems audit, KPIs, fixed quote</span></div><p class="gate">Gate: you sign phase 1 scope and fee</p></div></div>
+<div class="ph"><div class="rail"><div class="dot"></div><div class="bar"></div></div><div class="body"><div class="card" style="background:var(--soft);box-shadow:none"><span class="small">Phase 1 · months 1–3</span><span class="t">Foundation</span><span class="small">Identity, photo shoot, website and booking, Command Centre v1</span></div><p class="gate">Gate: brand, website and dashboard live; manager onboarded</p></div></div>
+<div class="ph"><div class="rail"><div class="dot"></div><div class="bar"></div></div><div class="body"><div class="card" style="background:var(--soft);box-shadow:none"><span class="small">Phase 2 · months 3–6</span><span class="t">Public launch</span><span class="small">Launch campaign, sales push, automation, golf memberships open</span></div><p class="gate">Gate: golf course opening date confirmed</p></div></div>
+<div class="ph"><div class="rail"><div class="dot"></div><div class="bar"></div></div><div class="body"><div class="card" style="background:var(--soft);box-shadow:none"><span class="small">Phase 3 · months 6–12+</span><span class="t">Golf and growth</span><span class="small">Club opening, golf module, ongoing growth retainer</span></div></div></div>
+</div>
+<p class="small tl-note">Timings are indicative and set during discovery.</p>
+<span class="num">06 / 07</span><span class="brand wm">WWWAVE STUDIO</span>
+</div>
+</section>
+
+<!-- 7 First step -->
+<section class="slide dark">
+<div class="in">
+<p class="eyebrow">The first step</p>
+<h2 class="h1" style="font-size:38px">Start with a four-week paid discovery</h2>
+<div class="spacer"></div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<div class="card" style="background:var(--n2);box-shadow:0 0 0 1px var(--nline)"><b style="font-size:15px;font-weight:500">You get</b><p class="small" style="color:#c9c9c4;font-size:14px;padding-top:4px">Brand direction, the KPI set for your Command Centre, a phased roadmap and a fixed quote.</p></div>
+<div class="card" style="background:var(--n2);box-shadow:0 0 0 1px var(--nline)"><b style="font-size:15px;font-weight:500">We need</b><p class="small" style="color:#c9c9c4;font-size:14px;padding-top:4px">Two days on site, a workshop with you, access to current bookings and accounts.</p></div>
+<div class="card" style="background:var(--n2);box-shadow:0 0 0 1px var(--nline)"><b style="font-size:15px;font-weight:500">The fee</b><p class="small" style="color:#c9c9c4;font-size:14px;padding-top:4px">Fixed and agreed upfront, credited against phase 1 if we continue.</p></div>
+</div>
+<div class="spacer"></div>
+<span class="num">07 / 07</span><span class="brand wm">WWWAVE STUDIO</span>
+</div>
+</section>
+
+</main>
+<script>
+(function(){
+  var data={
+    hotel:{name:'Hotel',lead:'Front office',k:[['Occupancy','72%','Target 65%',1],['ADR','USD 236','Target USD 220',1],['Direct bookings','41%','Target 50%',0],['Guest rating','4.6 / 5','12 reviews this week',1]]},
+    conference:{name:'Conference',lead:'Events manager',k:[['Pipeline value','USD 128k','Next 90 days',1],['Enquiries this week','9','2 unanswered over 2 h',0],['Quote to booking','38%','Target 35%',1],['Room utilisation','54%','Target 60%',0]]},
+    restaurant:{name:'Restaurant',lead:'Head chef',k:[['Covers','146','Target 120',1],['Average spend','USD 20.20','Target USD 22',0],['Food cost','31%','Target under 32%',1],['Waste logged','4.2 kg','Target under 5 kg',1]]},
+    farm:{name:'Farm',lead:'Farm manager',k:[['Supplied to kitchen','USD 620','At internal prices',1],['Sold outside','USD 900','Target USD 800',1],['Feed stock','6 days','Reorder under 7 days',0],['Eggs collected','1,240','Target 1,200',1]]},
+    golf:{name:'Golf club',lead:'Opening date TBC',k:[['Founding members','23','Target 100 before opening',0],['Membership deposits','USD 69k','Collected to date',1],['Course build','68%','Contractor report',1],['Enquiries this week','7','From launch campaign',1]]}
+  };
+  var order=['hotel','conference','restaurant','farm','golf'],cur='hotel';
+  function el(t,c,txt){var e=document.createElement(t);if(c)e.className=c;if(txt!=null)e.textContent=txt;return e;}
+  function renderUnit(){
+    var chips=document.getElementById('chips');chips.innerHTML='';
+    order.forEach(function(id){var b=el('button',null,data[id].name);b.setAttribute('aria-pressed',id===cur);b.onclick=function(){cur=id;renderUnit();};chips.appendChild(b);});
+    var u=data[cur];document.getElementById('u-name').textContent=u.name;document.getElementById('u-lead').textContent=u.lead;
+    var box=document.getElementById('u-kpis');box.innerHTML='';
+    u.k.forEach(function(k){var r=el('div','kpi');var a=el('div');a.appendChild(el('div','l',k[0]));a.appendChild(el('div','tg',k[2]));
+      var b=el('div');b.style.cssText='display:flex;flex-direction:column;align-items:flex-end;gap:3px';b.appendChild(el('div','v',k[1]));
+      b.appendChild(el('span','pill '+(k[3]?'p-ok':'p-err'),k[3]?'On track':'Below target'));r.appendChild(a);r.appendChild(b);box.appendChild(r);});
+  }
+  function show(tab){
+    document.querySelectorAll('[data-view]').forEach(function(v){v.hidden=v.getAttribute('data-view')!==tab;});
+    document.querySelectorAll('.tabs button').forEach(function(b){b.setAttribute('aria-selected',b.getAttribute('data-tab')===tab);});
+  }
+  document.querySelectorAll('.tabs button').forEach(function(b){b.onclick=function(){show(b.getAttribute('data-tab'));};});
+  document.querySelectorAll('[data-open]').forEach(function(b){b.onclick=function(){cur=b.getAttribute('data-open');renderUnit();show('units');};});
+  document.querySelectorAll('[data-goto]').forEach(function(b){b.onclick=function(){show(b.getAttribute('data-goto'));};});
+  renderUnit();
+})();
+</script>
+</body>
+</html>
