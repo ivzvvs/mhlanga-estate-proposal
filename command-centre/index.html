@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#f5f5f3">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Mhlanga Estate · Command Centre prototype</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700&family=Inter+Tight:wght@300;400;500;600&display=swap">
+<style>
+:root{
+  --ink:#141414;--ink2:#2a2a2a;--muted:#6e6e6a;--line:#e4e4e0;--line2:#d6d6d1;
+  --soft:#f5f5f3;--page:#ebebe9;--paper:#fff;
+  --ok:#1f8a4c;--okS:#e5f4ea;--run:#e8833a;--runS:#fbeadb;--runT:#b45f1c;--err:#c0392b;--errS:#fbe7e4;
+  --haloA:#f3e2d4;--haloB:#e3e1f3;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--page)}
+body{font-family:'Inter Tight','Helvetica Neue',Arial,sans-serif;color:var(--ink);-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased}
+h1,h2,p{margin:0}
+button{font-family:inherit;cursor:pointer;color:inherit}
+.app{max-width:480px;margin:0 auto;min-height:100svh;display:flex;flex-direction:column;background:var(--page)}
+.top{position:sticky;top:0;z-index:2;padding:calc(18px + env(safe-area-inset-top)) 16px 12px;display:flex;flex-direction:column;gap:14px;
+  background:radial-gradient(70% 90% at 15% 0%,var(--haloA),transparent),radial-gradient(70% 90% at 95% 100%,var(--haloB),transparent),var(--soft);box-shadow:0 1px 0 var(--line)}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.eyebrow{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.hello{font-size:28px;font-weight:300;letter-spacing:-.035em;line-height:1.1}
+.small{font-size:13px;line-height:1.45;color:var(--muted)}
+.bell{width:44px;height:44px;border-radius:999px;border:none;background:var(--paper);box-shadow:0 0 0 1px var(--line);display:flex;align-items:center;justify-content:center;position:relative;padding:0;flex:none}
+.bell .n{position:absolute;top:-2px;right:-2px;min-width:18px;height:18px;border-radius:999px;background:var(--run);color:#fff;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center}
+.tabs{display:flex;gap:4px;background:var(--paper);box-shadow:0 0 0 1px var(--line);border-radius:999px;padding:4px}
+.tabs button{flex:1;min-height:40px;border:none;border-radius:999px;font-size:14px;font-weight:500;background:transparent;color:var(--muted)}
+.tabs button[aria-selected="true"]{background:var(--ink);color:#fff}
+main{flex:1;padding:14px 16px 28px;display:flex;flex-direction:column;gap:10px}
+.card{background:var(--paper);box-shadow:0 0 0 1px var(--line);border-radius:22px;padding:18px}
+.big{font-size:44px;font-weight:300;letter-spacing:-.05em;line-height:1}
+.pill{display:inline-block;font-size:11.5px;font-weight:500;padding:3px 10px;border-radius:999px;white-space:nowrap}
+.p-ok{color:var(--ok);background:var(--okS)}.p-run{color:var(--runT);background:var(--runS)}.p-err{color:var(--err);background:var(--errS)}
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.tile{background:var(--paper);box-shadow:0 0 0 1px var(--line);border-radius:18px;padding:12px;display:flex;flex-direction:column;gap:3px}
+.tile .k{font-size:12px;color:var(--muted)}.tile .v{font-size:24px;font-weight:300;letter-spacing:-.04em}
+.h{font-size:15px;font-weight:500}
+.rev{display:flex;flex-direction:column;gap:6px;width:100%;background:none;border:none;padding:8px 0;text-align:left;min-height:44px}
+.rev .row{font-size:14px}
+.track{height:6px;border-radius:999px;background:var(--soft);width:100%}
+.track div{height:6px;border-radius:999px;background:var(--ink)}
+.attn{background:var(--runS);border:none;border-radius:22px;padding:14px 18px;text-align:left;display:flex;flex-direction:column;gap:4px;width:100%}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips button{min-height:40px;padding:0 16px;border-radius:999px;font-size:14px;font-weight:500;border:none;background:var(--paper);box-shadow:0 0 0 1px var(--line)}
+.chips button[aria-pressed="true"]{background:var(--ink);color:#fff;box-shadow:none}
+.kpi{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:12px;gap:12px}
+.kpi .l{font-size:14px}.kpi .tg{font-size:12px;color:var(--muted)}
+.kpi .v{font-size:20px;font-weight:300;letter-spacing:-.04em;text-align:right}
+.week{display:flex;align-items:flex-end;gap:6px;height:96px;padding-top:8px}
+.week div{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;height:100%;justify-content:flex-end}
+.week i{display:block;width:100%;border-radius:6px;background:var(--line2)}
+.week div.today i{background:var(--ink)}
+.week span{font-size:11px;color:var(--muted)}
+.alert{display:flex;flex-direction:column;gap:6px}
+.alert.urgent{box-shadow:0 0 0 1px var(--err)}
+.btn{min-height:40px;padding:0 16px;border-radius:999px;border:none;background:var(--ink);color:#fff;font-size:13.5px;font-weight:500;align-self:flex-start}
+.btn.done{background:var(--okS);color:var(--ok)}
+.msg{background:#dcf8c6;border-radius:16px 16px 16px 4px;padding:12px 14px;font-size:14px;line-height:1.5;white-space:pre-line;color:#111}
+.foot{display:flex;justify-content:space-between;align-items:center;padding:6px 2px 0}
+.wm{font-family:'Archivo','Helvetica Neue',Arial,sans-serif;font-weight:700;letter-spacing:-.02em;text-transform:uppercase;font-size:11px}
+a.back{font-size:13px;color:var(--muted)}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="top">
+<div class="row" style="align-items:flex-start">
+<div style="display:flex;flex-direction:column;gap:4px">
+<p class="eyebrow">Mhlanga Estate · Command Centre</p>
+<h1 class="hello">Good morning, Lionel</h1>
+<p class="small">Saturday 17 October · results for Friday</p>
+</div>
+<button class="bell" aria-label="Alerts" data-goto="alerts">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+<span class="n" id="alert-count">3</span>
+</button>
+</div>
+<nav class="tabs" role="tablist">
+<button role="tab" data-tab="today" aria-selected="true">Today</button>
+<button role="tab" data-tab="units" aria-selected="false">Units</button>
+<button role="tab" data-tab="alerts" aria-selected="false">Alerts</button>
+<button role="tab" data-tab="report" aria-selected="false">Report</button>
+</nav>
+</header>
+
+<main>
+<!-- TODAY -->
+<section data-view="today" style="display:flex;flex-direction:column;gap:10px">
+<div class="card" style="display:flex;flex-direction:column;gap:8px">
+<p class="small">Revenue, all units</p>
+<p class="big">USD 16,840</p>
+<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span class="pill p-ok">+12% vs last Fri</span><span class="small">112% of USD 15,000 target</span></div>
+<div class="week" aria-label="Revenue by day, last 7 days">
+<div><i style="height:52%"></i><span>Sat</span></div>
+<div><i style="height:61%"></i><span>Sun</span></div>
+<div><i style="height:38%"></i><span>Mon</span></div>
+<div><i style="height:44%"></i><span>Tue</span></div>
+<div><i style="height:70%"></i><span>Wed</span></div>
+<div><i style="height:82%"></i><span>Thu</span></div>
+<div class="today"><i style="height:100%"></i><span>Fri</span></div>
+</div>
+</div>
+<div class="tiles">
+<div class="tile"><span class="k">Occupancy</span><span class="v">72%</span><span class="k">33 of 46</span></div>
+<div class="tile"><span class="k">ADR</span><span class="v">$236</span><span class="k">RevPAR $170</span></div>
+<div class="tile"><span class="k">Cash</span><span class="v">$82.4k</span><span class="k">bank + tills</span></div>
+</div>
+<div class="card" style="padding:14px 18px">
+<p class="h" style="padding-bottom:4px">Revenue by unit</p>
+<button class="rev" data-open="hotel"><div class="row"><span>Hotel</span><b style="font-weight:500">USD 7,780</b></div><div class="track"><div style="width:100%"></div></div></button>
+<button class="rev" data-open="conference"><div class="row"><span>Conference</span><b style="font-weight:500">USD 5,200</b></div><div class="track"><div style="width:67%"></div></div></button>
+<button class="rev" data-open="restaurant"><div class="row"><span>Restaurant</span><b style="font-weight:500">USD 2,960</b></div><div class="track"><div style="width:38%"></div></div></button>
+<button class="rev" data-open="farm"><div class="row"><span>Farm (outside sales)</span><b style="font-weight:500">USD 900</b></div><div class="track"><div style="width:12%"></div></div></button>
+<button class="rev" data-open="golf"><div class="row"><span>Golf club</span><b style="font-weight:500">Pre-opening</b></div><div class="track"></div></button>
+</div>
+<button class="attn" data-goto="alerts">
+<span class="eyebrow" style="color:var(--runT)">Needs attention · <span id="attn-n">3</span></span>
+<span style="font-size:14px;line-height:1.4">2 conference enquiries unanswered for over 2 hours</span>
+</button>
+</section>
+
+<!-- UNITS -->
+<section data-view="units" hidden style="display:flex;flex-direction:column;gap:10px">
+<div class="chips" id="chips"></div>
+<div class="card" style="display:flex;flex-direction:column;gap:12px">
+<div class="row" style="align-items:baseline"><span id="u-name" style="font-size:26px;font-weight:300;letter-spacing:-.035em"></span><span id="u-lead" class="small" style="font-size:12px"></span></div>
+<div id="u-kpis" style="display:flex;flex-direction:column;gap:12px"></div>
+</div>
+<p class="small" style="padding:0 4px">Each head of department sees only their unit and fills in daily figures from a phone, even offline.</p>
+</section>
+
+<!-- ALERTS -->
+<section data-view="alerts" hidden style="display:flex;flex-direction:column;gap:10px" id="alerts"></section>
+
+<!-- REPORT -->
+<section data-view="report" hidden style="display:flex;flex-direction:column;gap:10px">
+<div class="card" style="display:flex;flex-direction:column;gap:12px">
+<div class="row"><span class="h">Weekly WhatsApp summary</span><span class="small" style="font-size:12px">Mon 07:00</span></div>
+<div class="msg">Mhlanga Estate · week 41
+Revenue USD 98,600 (+9% vs last week, 104% of target)
+Hotel occupancy 64% · ADR USD 228
+Conferences: 3 booked, pipeline USD 128k
+Restaurant food cost 31% (target under 32%)
+Golf: 23 founding members, USD 69k deposits
+
+Needs you: approve the photo-shoot budget; 2 overdue enquiries.</div>
+<p class="small">Sent to you and the general manager. Tap a line in the full app to open the detail.</p>
+</div>
+</section>
+
+<div class="foot"><span class="small" style="font-size:11.5px">Prototype · illustrative data</span><span class="wm">WWWAVE STUDIO</span></div>
+<a class="back" href="../">← Back to the proposal</a>
+</main>
+</div>
+<script>
+(function(){
+  var data={
+    hotel:{name:'Hotel',lead:'Front office',k:[['Occupancy','72%','Target 65%',1],['ADR','USD 236','Target USD 220',1],['Direct bookings','41%','Target 50%',0],['Guest rating','4.6 / 5','12 reviews this week',1]]},
+    conference:{name:'Conference',lead:'Events manager',k:[['Pipeline value','USD 128k','Next 90 days',1],['Enquiries this week','9','2 unanswered over 2 h',0],['Quote to booking','38%','Target 35%',1],['Room utilisation','54%','Target 60%',0]]},
+    restaurant:{name:'Restaurant',lead:'Head chef',k:[['Covers','146','Target 120',1],['Average spend','USD 20.20','Target USD 22',0],['Food cost','31%','Target under 32%',1],['Waste logged','4.2 kg','Target under 5 kg',1]]},
+    farm:{name:'Farm',lead:'Farm manager',k:[['Supplied to kitchen','USD 620','At internal prices',1],['Sold outside','USD 900','Target USD 800',1],['Feed stock','6 days','Reorder under 7 days',0],['Eggs collected','1,240','Target 1,200',1]]},
+    golf:{name:'Golf club',lead:'Opening date TBC',k:[['Founding members','23','Target 100 before opening',0],['Membership deposits','USD 69k','Collected to date',1],['Course build','68%','Contractor report',1],['Enquiries this week','7','From launch campaign',1]]}
+  };
+  var alerts=[
+    {lvl:'Urgent',when:'09:40',t:'2 conference enquiries waiting',d:'Unanswered for over 2 hours. Combined value about USD 18,000.',o:'Events manager'},
+    {lvl:'Watch',when:'07:00',t:'Feed stock below 7 days',d:'Reorder now to avoid a gap next weekend.',o:'Farm manager'},
+    {lvl:'Watch',when:'Yesterday',t:'Direct bookings at 41%',d:'Below the 50% target for the third week. OTA commission rising.',o:'General manager'}
+  ];
+  var order=['hotel','conference','restaurant','farm','golf'],cur='hotel',open=alerts.length;
+  function el(t,c,txt){var e=document.createElement(t);if(c)e.className=c;if(txt!=null)e.textContent=txt;return e;}
+  function renderUnit(){
+    var chips=document.getElementById('chips');chips.innerHTML='';
+    order.forEach(function(id){var b=el('button',null,data[id].name);b.setAttribute('aria-pressed',id===cur);b.onclick=function(){cur=id;renderUnit();};chips.appendChild(b);});
+    var u=data[cur];document.getElementById('u-name').textContent=u.name;document.getElementById('u-lead').textContent=u.lead;
+    var box=document.getElementById('u-kpis');box.innerHTML='';
+    u.k.forEach(function(k){var r=el('div','kpi');var a=el('div');a.appendChild(el('div','l',k[0]));a.appendChild(el('div','tg',k[2]));
+      var b=el('div');b.style.cssText='display:flex;flex-direction:column;align-items:flex-end;gap:4px';b.appendChild(el('div','v',k[1]));
+      b.appendChild(el('span','pill '+(k[3]?'p-ok':'p-err'),k[3]?'On track':'Below target'));r.appendChild(a);r.appendChild(b);box.appendChild(r);});
+  }
+  function renderAlerts(){
+    var box=document.getElementById('alerts');box.innerHTML='';
+    alerts.forEach(function(a){
+      var c=el('div','card alert'+(a.lvl==='Urgent'&&!a.done?' urgent':''));
+      var r=el('div','row');r.appendChild(el('span','pill '+(a.done?'p-ok':a.lvl==='Urgent'?'p-err':'p-run'),a.done?'Handled':a.lvl));r.appendChild(el('span','small',a.when));c.appendChild(r);
+      c.appendChild(el('b','h',a.t));c.appendChild(el('span','small',a.d));c.appendChild(el('span','small','Assigned to: '+a.o));
+      var btn=el('button','btn'+(a.done?' done':''),a.done?'Marked as handled':'Mark as handled');
+      btn.onclick=function(){if(!a.done){a.done=true;open--;sync();renderAlerts();}};c.appendChild(btn);box.appendChild(c);
+    });
+    var note=el('p','small','Alerts also arrive on WhatsApp the moment something drifts off target.');note.style.padding='0 4px';box.appendChild(note);
+  }
+  function sync(){document.getElementById('alert-count').textContent=open;document.getElementById('alert-count').hidden=!open;document.getElementById('attn-n').textContent=open;}
+  function show(tab){
+    document.querySelectorAll('[data-view]').forEach(function(v){v.hidden=v.getAttribute('data-view')!==tab;});
+    document.querySelectorAll('.tabs button').forEach(function(b){b.setAttribute('aria-selected',b.getAttribute('data-tab')===tab);});
+    window.scrollTo(0,0);
+  }
+  document.querySelectorAll('.tabs button').forEach(function(b){b.onclick=function(){show(b.getAttribute('data-tab'));};});
+  document.querySelectorAll('[data-open]').forEach(function(b){b.onclick=function(){cur=b.getAttribute('data-open');renderUnit();show('units');};});
+  document.querySelectorAll('[data-goto]').forEach(function(b){b.onclick=function(){show(b.getAttribute('data-goto'));};});
+  renderUnit();renderAlerts();sync();
+})();
+</script>
+</body>
+</html>
